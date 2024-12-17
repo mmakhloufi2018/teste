@@ -1,14 +1,15 @@
 name: Deploy WAR app from GitHub Repo to Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: simo1            # Nom de votre Azure Web App
+  AZURE_WEBAPP_NAME: simo1
 
 on:
   push:
-    branches: [ "main" ]              # Déclenchement sur la branche principale
-  workflow_dispatch:                  # Permet d'exécuter manuellement
+    branches: [ "main" ]
+  workflow_dispatch:
 
 permissions:
+  id-token: write
   contents: read
 
 jobs:
@@ -24,10 +25,7 @@ jobs:
       - name: Azure Login with Service Principal
         uses: azure/login@v1
         with:
-          client-id: "cloud_user_p_f0b79421@realhandsonlabs.com"
-          client-secret: "WloYyF%KXbZK8ldGK6oP"
-          tenant-id: "84f1e4ea-8554-43e1-8709-f0b8589ea118"
-          subscription-id: "2213e8b1-dbc7-4d54-8aff-b5e315df5e5b"
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Étape 3 : Vérifier l'existence du fichier WAR
       - name: Check for WAR file
@@ -42,4 +40,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: 'simple-webapp.war'  # Chemin relatif au fichier .war dans le dépôt
+          package: 'simple-webapp.war'
+
