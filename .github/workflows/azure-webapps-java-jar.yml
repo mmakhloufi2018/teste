@@ -28,6 +28,7 @@ jobs:
           client-id: "cloud_user_p_f0b79421@realhandsonlabs.com"
           client-secret: "WloYyF%KXbZK8ldGK6oP"
           tenant-id: "84f1e4ea-8554-43e1-8709-f0b8589ea118"
+          subscription-id: "2213e8b1-dbc7-4d54-8aff-b5e315df5e5b"
           
       # Étape 2 : Vérifier l'existence du fichier WAR
       - name: Check for WAR file
