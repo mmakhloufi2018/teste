@@ -22,10 +22,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Azure Login
+      - name: Azure Login with Service Principal
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          client-id: "cloud_user_p_f0b79421@realhandsonlabs.com"
+          client-secret: "WloYyF%KXbZK8ldGK6oP"
+          tenant-id: "84f1e4ea-8554-43e1-8709-f0b8589ea118"
           
       # Étape 2 : Vérifier l'existence du fichier WAR
       - name: Check for WAR file
